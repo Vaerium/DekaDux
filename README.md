@@ -7,7 +7,7 @@ This also comes with several comprehensive auto-detection mechanisms like valid 
 
 To see this project in action with its entire feature set, check out our showcase video: [DekaDux - Feature Showcase](https://youtu.be/1euZ0Jn-CD4)
 
-For more information about how to use it and a troubleshooting FAQ, check this: [Guide & FAQ](guide_and_faq.md)
+For more information about how to use it and a troubleshooting FAQ, check this: [Guide & FAQ](GUIDE_AND_FAQ.md)
 
 ## Contact
 
@@ -52,7 +52,7 @@ Some details about technical concepts regarding the protocol can be found here: 
 Generally, it can be stated that DekaDux should work on every Dekaron server out there.\
 Thanks to the auto-detection implementation, servers don't need to be explicitly added to DekaDux to be functional. There have been multiple protocols implemented, mainly divided between A9-based and A40-based, which will be auto-detected during runtime as well. You can also multi-client and then select only one certain character to track.
 
-However, if you don't find your server, or more importantly its corresponding data set in our pre-defined collection within DekaDux, you may experience some inaccuracies. Refer to the [FAQ](guide_and_faq.md) regarding this.\
+However, if you don't find your server, or more importantly its corresponding data set in our pre-defined collection within DekaDux, you may experience some inaccuracies. Refer to the [FAQ](GUIDE_AND_FAQ.md) regarding this.\
 Full support is therefore only guaranteed for servers listed in DekaDux's network configuration.
 
 ## Data Sets / Client Files (CSVs)
