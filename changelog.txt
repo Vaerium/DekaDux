@@ -1,0 +1,42 @@
+Changelog DekaDux v1.1.0 / 17-05-2026
+=====================================
+
+Features:
+-------------
+- Implemented full support for "ping reducer" software like ExitLag
+- Virtual adapters running through the loopback traffic can now be identified and captured without data noise
+- Added external configuration file so updates no longer reset your configuration
+- Added full-scale localization (English, Simplified Chinese, Traditional Chinese, Korean, Filipino, Spanish, Portuguese)
+- Added foundational work for server-side DPS capture
+- Released "DekaDux.Integration" project to support server features (launcher integration)
+- Added a context menu to DamageMeter with delete/copy functionality
+
+Improvements:
+-------------
+- Instead of closing the app when missing dependencies are detected, you can now choose to auto-launch the required installers from the "prerequisites" directory
+- Added automated Dekaron client targeting and improved channel swap detection (necessary for ping reducers to avoid traffic noise) -> now a targeted client is always tracked through all channels by default instead of all clients
+- Hardened networking and packet queue processing with various optimizations
+- Optimized database writes during heavy loads with a scheduler
+- Added optimizations for DamageMeter/CombatTracker ListView and various UI elements
+- Improved window size management
+- Added splashscreen to bridge the initialization time
+- Network adapters now only show devices with valid IP addresses and titlebar bulb shows connection details on mouse hover
+- Added sorting possibility for DamageMeter
+
+Fixes:
+-------------
+- Fixed rare cases of crash from UI thread
+- Fixed window flickering on startup or when navigating pages in specific conditions
+- Fixed many minor issues
+
+Data & Files:
+-------------
+- Added data set "A9 Vanilla"
+- Added data set "A40 Rising TW"
+- Removed dead servers / data sets
+
+
+Changelog DekaDux v1.0.0 / 17-02-2026
+=====================================
+
+- Initial release

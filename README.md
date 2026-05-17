@@ -31,19 +31,23 @@ Server owners who wish to be featured in DekaDux or to acquire special features 
 
 DekaDux is written in C# targeting .NET 9.0. It requires Npcap as an interface to capture network packets.
 
-It is split into 2 main projects:
+It is split into 2 main projects and a distributable library:
 
 - **DekaDux.Core** -
   The main library providing control over the Dekaron network protocol and processing its data using Dekaron CSV files. Also runs an in-memory SQLite database for parsed entities.
 
 - **DekaDux.UI** -
   A modern UI using the WPF framework to visualize the processed data in a structured manner and provide in-depth configuration.
+  
+- **DekaDux.Integration** -
+  A distributable library providing integrations for DekaDux to third parties.
 
 Until we deem this project ready and publish the full source code, the releases are fully protected and packed.
 Builds are published self-contained, meaning you don't have to install any .NET prerequisites.\
 (Going open source is not planned at this time, as it could lead to abuse and compromise the fair-play nature!)
 
 If you have security concerns, rest assured that this tool does not require administrative privileges nor antivirus exclusions to function. You can even block this application from sending/receiving network traffic in your firewall (it only relies on capturing packets, which works regardless).
+Server administrators can implement a distributable library for DekaDux integration - for example to add automated DekaDux download / update / launch into your launcher.
 
 Some details about technical concepts regarding the protocol can be found here: [Technical Implementation](TECHNICAL.md)
 
@@ -60,12 +64,13 @@ Full support is therefore only guaranteed for servers listed in DekaDux's networ
 DekaDux relies on static game files to process data correctly. For any Dekaron server, the following files are necessary:
 - script\\skilldesc\\*.csv
 - share\\skill\\status.csv
-- share\\item\\itemaccessory.csv, itemarmor.csv, itemweapon.csv, itemstatus.csv
+- share\\item\\itemaccessory.csv, itemarmor.csv, itemweapon.csv, itemetc.csv, itemstatus.csv
 - share\\creature\\monster.csv
 - share\\pc\\pcclass.csv
 
 Icons are mapped statically since they should never change between different clients. Yet some clients changed their iconIndex in imagetables and this case requires a custom mapping:
-- data\\texture\\ui\\game\\theme01
+- data\\texture\\ui\\game\\theme01\\buffer
+- data\\texture\\ui\\game\\skill
 - data\\script\\ui\\com\\imagetable.txt
 
 Releases come with a wide assortment of different data sets to choose from, some explicitly matching supported servers, some data-mined from generic clients.\

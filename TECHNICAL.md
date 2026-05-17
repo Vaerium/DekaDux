@@ -32,8 +32,23 @@
 - After a valid connection is identified, the network listener is restarted and limited to that IP
 - If your client is forwarded to a different server/channel (like DKS) through an expected packet, your network listener is reset to that IP
 - Changing servers/channels or relogging assigns your client a new actorId, resulting in a new actor appearing in the UI. Your former actor is renamed to visualize the difference
+- There is special handling implemented for traffic which runs through a tunnel, e.g. "ping reducer" software like ExitLag. Here the traffic has to be isolated from the virtual loopback device since packets are not readable through the regular network adapter anymore.
+
+## How Static Client Files Are Used
+
+- script\\skilldesc\\*.csv\
+-> Required to identify skills used by PCs through protocol via "Index" and map "Name/Description/Level" to these instances. In some cases, "IconIndex" is added by the DekaDux extraction if the imagetable has non-standard values. Usualy the default rule applies: SkillIndex = IconIndex\
+We don't use "data\\share\\skill" here, because the strings displayed in the client are not pulled from these files - they are only internal. Might be used in the future for more detailed stats.
+- share\\skill\\status.csv\
+-> Required to identify status effects applied to actors via "Index" and map "Description/IconIndex" to these instances.
+- share\\item\\itemaccessory.csv, itemarmor.csv, itemweapon.csv, itemstatus.csv\
+-> Not currently processed - preparation for future features
+- share\\creature\\monster.csv\
+-> Required to identify NPC by their Index and map various values to their instances.
+- share\\pc\\pcclass.csv\
+-> Potential override for default values - haven't seen any files use non-default indices so far.
 
 ## Development Methodology
 
-DekaDux was developed through binary disassembly and manual static/dynamic protocol analysis, supported through the in-app Traffic Analyzer. All names and structures within DekaDux are not guaranteed to be exact replications of the original sources, but instead educated guesses. Be aware of this when considering the OpCode names—some lesser researched ones are very rough estimates.\
+DekaDux was developed through binary disassembly and manual static/dynamic protocol analysis, supported through the self-built Traffic Analyzer. All names and structures within DekaDux are not guaranteed to be exact replications of the original sources, but instead educated guesses. Be aware of this when considering the OpCode names - some lesser researched ones are very rough estimates.\
 I'm aware of a client being around containing debug symbols baked in - this was not (yet) used for development.

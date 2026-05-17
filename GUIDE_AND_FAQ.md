@@ -2,27 +2,27 @@
 
 ## Quick Start
 
-1. Install Npcap.\
-(An installer is provided in the "prerequisites" directory with each release)
+1. Start 'DekaDux.exe'. If this is your first time, you will be prompted to install the prerequisites - follow the instructions.
 2. Go to "Settings > Network" and select the network adapter that communicates with the Dekaron server.\
-(If you're unsure which one is correct, check your IP via the cmd command "ipconfig". In most cases, you should only see one valid IPv4)
-3. Select the data set corresponding to your server.\
-(If you can't find your server's name, just try them out until one matches the actions correctly)
+2.1. If your traffic runs through a tunnel - e.g. "ping reducer" software like ExitLag - you need to use your loopback adapter.
+3. Select the data set and protocol version corresponding to your server.\
+3.1. If you use DekaDux through a supported launcher or connect to a server IP that is recognized by DekaDux, data set and protocol version will be assigned automatically.\
+3.2. If you can't find your server's data set, just try them out until one matches the actions close enough.
 4. Click "[START] Capturing".
 5. Log into the game server with your character.
 6. At this point, you can stop and start capturing whenever you like, or reset the gathered data.
 
 ## Advanced Usage Tips
 
-1. If you're multi-clienting, select which client you want to capture in "Settings > Network" to avoid duplicate data.
+1. If you're multi-clienting, select which client you want to capture in "Settings > Network" to avoid duplicate data. By default the first detected client connection will be targeted.
 2. You can use "Stay on Top" and "Transparency" from "Settings > General" and drag DekaDux inside your game window for best visibility.
-3. If you want to start DekaDux on the fly, you can also start capturing while already being logged into the game server - it will still be auto-detected.\
-(Be aware of missing data when doing this!)
+3. If you need to start DekaDux on the fly, you can also start capturing while already being logged into the game server - it will still be auto-detected.\
+(Be aware of initial missing data when doing this)
 4. You can statically configure DekaDux to directly listen to your desired server. Go to "Settings > Network" and disable "Auto-detect Server Connection". Then select your target in "Dekaron Server" - this will also assign the appropriate "Dekaron Data Set" and "Protocol Version" for you.\
-(This is not usable if you use a VPN that masks the game server's IP!)
+(This feature is mostly experimental and for debugging, most servers will have dynamic gateways which route the traffic to the actual game server and none will work on loopback (e.g. ExitLag))
 5. If you have access to the unencrypted game client, you can extract the data set using the button in "Settings > Network" and activate "Use Custom Data Set" for perfectly matching IDs.
 6. You can autostart DekaDux whenever you launch your Dekaron client. Configure this feature in "Settings > General".
-7. Using the Traffic Analyzer with the filter narrowed down to a single decrypted packet (unrecognized disabled) will enable diff checks between the payloads.
+7. Using the Traffic Analyzer with the filter narrowed down to a single decrypted packet and unrecognized disabled will enable diff checks between the payloads.
 
 
 # FAQ / Troubleshooting
@@ -39,8 +39,8 @@ If nothing matches, you should inform the server owner to reach out to us so we 
 If you simply run out of render distance from the actor and load them back in, the name should get detected and refreshed.
 3. **Every skill is being shown duplicate**\
 -> You are most likely multi-clienting. Select one client to capture traffic for in "Settings > Network".
-4. **Nothing works ??**\
--> Some servers may use files or protocols that are so vastly different that DekaDux cannot work with them. In that case, contact us and we'll take a look at it.
+4. **When I connect to the server, DekaDux doesn't detect the connection**\
+-> Make sure to use auto-detection. If no connections get detected, your dekaron traffic is not running through the selected network adapter. In some cases there might be issues with "ping reducer" software which tunnels traffic - contact us to look at this issue.
 5. **When using some skills with lingering damage instances, it shows the wrong skill in Combat Tracker**\
 -> Sadly, it's a technical limitation. Refer to: [Technical Implementation - How Actions Reference Skills](TECHNICAL.md)
 6. **Some skill/effect icons are missing**\
@@ -50,6 +50,12 @@ If you simply run out of render distance from the actor and load them back in, t
 8. **I can't find my own character**\
 -> You need to relog into your character. The name only gets detected when you log in.
 9. **No data is being captured when I change channel/server**\
--> When you have a dedicated game server IP or client port configured, DekaDux cannot auto-detect forwarded connections. Use auto-detection and target "<All>" Ports.
-10. **Sometimes new player entries appear while the other one gets '<PRIOR>' in front of their name**\
--> This happens when an actor is assigned a new ID by the Dekaron server. This typically happens on a new server/channel connection.
+-> When you have a dedicated game server IP or client port configured, DekaDux cannot auto-detect forwarded connections. Use auto-detection and target "<All>" Ports.\
+If you already auto-detected "server X" and now want to play on "server Y" you need to restart DekaDux - this issue can sometimes also happen when switching channels very fast back and forth on the same server.
+10. **Sometimes new player entries appear while the other one gets '<X>' in front of their name**\
+-> This happens when an actor is assigned a new ID by the Dekaron server, actors with this notation are not active anymore. This typically happens on a new server/channel connection (like DKSQ).
+11. **When I log in, players around me have corrupted names inside the DamageMeter**\
+-> If you connect to a server based on the A40 protocol which isn't identified through it's specific IP (using ExitLag for example), you can run into timing issues with the protocol auto-detection. The actors got loaded with the default protocol before it was changed to A40.\
+Make sure to set the protocol version to 'A40' instead of '<Auto>' under "Settings > Network".
+12. **Nothing works ??**\
+-> Some servers may use files or protocols that are so vastly different that DekaDux cannot work with them. In that case, contact us and we'll take a look at it.
