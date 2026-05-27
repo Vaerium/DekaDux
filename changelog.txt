@@ -1,3 +1,25 @@
+Changelog DekaDux v1.1.2 / 27-05-2026
+=====================================
+
+- Fixed titlebar not being draggable on Windows 11
+- Fixed transparency not working on Windows 11 and made it even more transparent with a different window type
+- Fixed theme swapping not breaking transparency anymore
+- Fixed StayOnTop not working on start up on Windows 11
+- Fixed data set not being correctly applied on first launch through launcher, stops wrong skills from appearing in first session
+- Added an "overlay" button -> quick access toggle of StayOnTop + transparency for the session without overwriting config
+- Hardened CombatTracker loading -> initial navigate to tons of data gets handled more efficiently
+
+
+Changelog DekaDux v1.1.1 / 19-05-2026
+=====================================
+
+- Improved onboarding > show clear instructions about network configuration
+- Fixed localization resources breaking due to file protection, also auto-detect system language if available on first launch
+- Fixed window sizing issue where DamageMeter sometimes turned smaller than allowed
+- Increased tooltip responsiveness
+- Fixed other minor issues
+
+
 Changelog DekaDux v1.1.0 / 17-05-2026
 =====================================
 
