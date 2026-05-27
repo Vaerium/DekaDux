@@ -29,7 +29,7 @@ public class DekaDuxExampleImplementation
                 Console.WriteLine($"{report.Status}: {report.Percentage}%");
             });
 
-            await dekaDuxController.UpdateAsync(progress); // can also call this directly, checks version itself update
+            await dekaDuxController.UpdateAsync(progress); // can also call this directly, checks version itself before update
         }
 
         dekaDuxController.Launch(serverDataSet, serverProtocolVersion); // launch dekadux with your server parameters
